@@ -1,9 +1,11 @@
-import styles from './Title.module.css'
+import styled from "@emotion/styled";
 
 const Title = () => {
-  return (
-    <h1 className={styles.title}>To-do List</h1>
-  )
-}
+  return <Container>To-do List</Container>;
+};
 
-export default Title
+const Container = styled.h1`
+  margin-bottom: 16px;
+`;
+
+export default Title;
