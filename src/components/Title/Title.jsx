@@ -1,11 +1,5 @@
-import styled from "@emotion/styled";
-
 const Title = () => {
-  return <Container>To-do List</Container>;
+  return <h1 className="text-2xl mb-[16px]">To-Do List</h1>;
 };
-
-const Container = styled.h1`
-  margin-bottom: 16px;
-`;
 
 export default Title;

@@ -1,7 +1,17 @@
 import { useContext, useState } from "react";
 import { TodoContext } from "../../context";
 import { DELETE_TODO, TOGGLE_TODO, UPDATE_TODO } from "../../reducer";
-import styled from "@emotion/styled";
+
+const itemClassName = `
+  flex items-center h-[65px] gap-[12px] px-[12px] py-[0px]
+`;
+const inputClassName = `
+  grow border-[1px] border-solid border-gray-500 rounded-[6px]
+  bg-transparent px-[12px] py-[4px] text-[14px] leading-[20px] text-white
+`;
+const buttonClassName = `
+  bg-transparent px-[6px] text-white shrink border-none
+`;
 
 const TodoItem = ({ id, text, completed }) => {
   const { dispatch } = useContext(TodoContext);
@@ -24,50 +34,35 @@ const TodoItem = ({ id, text, completed }) => {
   };
 
   return (
-    <Item>
-      <Checkbox type="checkbox" checked={completed} onChange={handleToggle} />
+    <div className={itemClassName}>
+      <input
+        className="w-[16px] h-[16px]"
+        type="checkbox"
+        checked={completed}
+        onChange={handleToggle}
+      />
       {edit ? (
-        <Input value={text} onChange={handleChange} />
+        <input
+          className={inputClassName}
+          value={text}
+          onChange={handleChange}
+        />
       ) : (
-          <Text completed={ completed }>{text}</Text>
+        <p
+          className={["grow", completed && "line-through"].join(" ")}
+          completed={completed}
+        >
+          {text}
+        </p>
       )}
-      <Button onClick={handleEdit}>수정</Button>
-      <Button onClick={handleDelete}>삭제</Button>
-    </Item>
+      <button className={buttonClassName} onClick={handleEdit}>
+        수정
+      </button>
+      <button className={buttonClassName} onClick={handleDelete}>
+        삭제
+      </button>
+    </div>
   );
 };
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  height: 65px;
-  gap: 12px;
-  padding: 0 12px;
-`;
-const Checkbox = styled.input`
-  width: 16px;
-  height: 16px;
-`;
-const Input = styled.input`
-  flex-grow: 1;
-  border: 1px solid gray;
-  border-radius: 6px;
-  background-color: transparent;
-  padding: 4px 12px;
-  font-size: 14px;
-  line-height: 20px;
-  color: white;
-`;
-const Text = styled.p`
-  flex-grow: 1;
-  ${(props) => props.completed && `text-decoration: line-through;`}
-`;
-const Button = styled.button`
-  width: 30px;
-  height: 30px;
-  background-color: black;
-  color: white;
-  border: none;
-`;
 
 export default TodoItem;

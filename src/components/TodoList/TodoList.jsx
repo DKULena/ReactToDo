@@ -1,4 +1,3 @@
-// import styles from "./TodoList.module.css";
 import TodoItem from "../TodoItem/TodoItem";
 import { useContext } from "react";
 import { TodoContext } from "../../context";
@@ -7,7 +6,23 @@ import {
   TOGGLE_TODO,
   TOGGLE_TODO_ALL,
 } from "../../reducer";
-import styled from "@emotion/styled";
+
+const listClassName = `
+  border-[1px] border-solid border-gray-500
+  rounded-[6px]
+  mt-[16px]
+`
+const headerClassName = `
+  flex items-center h-[40px] px-[12px] py-[0px] gap-[12px]
+`
+const checkboxClassName = `
+  w-[16px] h-[16px]
+`
+const buttonClassName = `
+  border-[1px] border-solid border-gray-500
+  rounded-[6px] bg-transparent px-[12px] py-[0px]
+  text-white shrink h-[30px]
+`
 
 const TodoList = () => {
   const { state, dispatch } = useContext(TodoContext);
@@ -34,56 +49,28 @@ const TodoList = () => {
     filteredList.length > 0 && filteredList.every((item) => item.completed);
 
   return (
-    <List>
-      <Header>
-        <Checkbox
+    <div className={listClassName}>
+      <header className={headerClassName}>
+        <input
+          className={checkboxClassName}
           type="checkbox"
           checked={isAllCompleted}
           onChange={handleToggleAll}
         />
-        <Text>할 일</Text>
+        <p className="grow">할 일</p>
         {completedCount > 0 && (
-          <Button onClick={handleDeleteCompleted}>
+          <button className={buttonClassName} onClick={handleDeleteCompleted}>
             {completedCount}개 선택 삭제
-          </Button>
+          </button>
         )}
-      </Header>
+      </header>
       <div>
         {filteredList.map((item) => (
           <TodoItem key={item.id} {...item} />
         ))}
       </div>
-    </List>
+    </div>
   );
 };
-
-const List = styled.div`
-  border: 1px solid gray;
-  border-radius: 6px;
-  margin-top: 16px;
-`;
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  height: 40px;
-  padding: 0 12px;
-  gap: 12px;
-`;
-const Checkbox = styled.input`
-  width: 16px;
-  height: 16px;
-`;
-const Text = styled.p`
-  flex-grow: 1;
-`;
-const Button = styled.button`
-  border: 1px solid gray;
-  border-radius: 6px;
-  background-color: transparent;
-  padding: 0 12px;
-  color: white;
-  flex-shrink: 0;
-  height: 30px;
-`;
 
 export default TodoList;
