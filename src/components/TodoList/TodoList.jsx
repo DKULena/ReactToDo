@@ -1,4 +1,4 @@
-import "./TodoList.css";
+import styles from "./TodoList.module.css";
 import TodoItem from "../TodoItem/TodoItem";
 import { useContext } from "react";
 import { TodoContext } from "../../context";
@@ -31,18 +31,18 @@ const TodoList = () => {
 
 
   return (
-    <div className="todo-list">
-      <div className="todo-header">
+    <div className={styles["todo-list"]}>
+      <div className={styles["todo-header"]}>
         <input
           type="checkbox"
-          className="todo-checkbox"
+          className={styles["todo-checkbox"]}
           checked={isAllCompleted}
           onChange={handleToggleAll}
         />
-        <p className="todo-header-text">할 일</p>
+        <p className={styles["todo-header-text"]}>할 일</p>
         {completedCount > 0 && (
           <button
-            className="todo-header-button"
+            className={styles["todo-header-button"]}
             onClick={handleDeleteCompleted}
           >
             {completedCount}개 선택 삭제

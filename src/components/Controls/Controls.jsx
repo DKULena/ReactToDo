@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import "./Controls.css";
+import styles from "./Controls.module.css";
 import { TodoContext } from "../../context";
 import { ADD_TODO, SET_FILTER } from "../../reducer";
 
@@ -19,28 +19,28 @@ const Controls = () => {
   };
 
   return (
-    <div className="controls">
+    <div className={styles.controls}>
       <input
         type="text"
-        className="input"
+        className={styles.input}
         value={text}
         onChange={handleChange}
       />
-      <button className="button" onClick={handleSubmit}>
+      <button className={styles.button} onClick={handleSubmit}>
         추가
       </button>
       <select
-        className="select"
+        className={styles.select}
         value={state.filterType}
         onChange={handleChangeFilterType}
       >
-        <option className="select-option" value="All">
+        <option className={styles['select-option']} value="All">
           전체
         </option>
-        <option className="select-option" value="TODO">
+        <option className={styles['select-option']} value="TODO">
           할 일
         </option>
-        <option className="select-option" value="COMPLETED">
+        <option className={styles['select-option']} value="COMPLETED">
           완료
         </option>
       </select>

@@ -1,8 +1,8 @@
-import './Title.css'
+import styles from './Title.module.css'
 
 const Title = () => {
   return (
-    <h1 className='title'>To-do List</h1>
+    <h1 className={styles.title}>To-do List</h1>
   )
 }
 
