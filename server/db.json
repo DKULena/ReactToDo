@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": "1741763862867",
+      "text": "수정",
+      "completed": false
+    },
+    {
+      "id": "1741764762358",
+      "text": "지금 추가",
+      "completed": false
+    },
+    {
+      "id": "1741764767531",
+      "text": "뭔가를 추가",
+      "completed": true
+    },
+    {
+      "id": "1741764771688",
+      "text": "일단 추가",
+      "completed": true
+    }
+  ]
+}

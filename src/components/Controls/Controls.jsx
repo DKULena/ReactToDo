@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo, setFilter } from "../../../store/todoSlice";
+import { createTodo, setFilter } from "../../../store/todoSlice";
 
 const inputClassName = `
   grow border-[1px] border-solid border-gray-500 rounded-[6px]
@@ -27,7 +27,7 @@ const Controls = () => {
     setText(e.target.value);
   };
   const handleSubmit = () => {
-    dispatch(addTodo(text));
+    dispatch(createTodo(text));
     setText("");
   };
   const handleChangeFilterType = (e) => {

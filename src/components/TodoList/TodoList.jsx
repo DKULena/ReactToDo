@@ -1,11 +1,4 @@
 import TodoItem from "../TodoItem/TodoItem";
-import { useContext } from "react";
-import { TodoContext } from "../../context";
-import {
-  DELETE_TODO_COMPLETED,
-  TOGGLE_TODO,
-  TOGGLE_TODO_ALL,
-} from "../../reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodoCompleted, toggleTodoAll } from "../../../store/todoSlice";
 

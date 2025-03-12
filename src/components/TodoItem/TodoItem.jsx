@@ -15,19 +15,23 @@ const buttonClassName = `
 
 const TodoItem = ({ id, text, completed }) => {
   const dispatch = useDispatch();
+  const [newText, setNewText] = useState(text);
 
   const [edit, setEdit] = useState(false);
 
   const handleEdit = () => {
+    if (edit) {
+      dispatch(updateTodo({ id, text: newText }));
+    }
     setEdit((prev) => !prev);
   };
 
   const handleChange = (e) => {
-    dispatch(updateTodo({ id, text: e.target.value }));
+    setNewText(e.target.value);
   };
 
   const handleToggle = () => {
-    dispatch(toggleTodo(id));
+    dispatch(toggleTodo({ id, completed: !completed }));
   };
 
   const handleDelete = () => {
@@ -45,7 +49,7 @@ const TodoItem = ({ id, text, completed }) => {
       {edit ? (
         <input
           className={inputClassName}
-          value={text}
+          value={newText}
           onChange={handleChange}
         />
       ) : (
